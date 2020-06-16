@@ -7,47 +7,52 @@
  * };
  */
 
- int findLength(ListNode *temp){
-     int l=0;
-     while(temp!=NULL){
-         l++;
-         temp=temp->next;
-     }
-     return l;
- }
- 
-int Solution::lPalin(ListNode* A) {
-    int len=findLength(A);
-    ListNode *mid=A;
-    int half;
-    if(len&1){
-        half=len/2+1;
+int Solution::lPalin(ListNode* A)
+{
+    ListNode *slow=A;
+    ListNode *fast=A;
+    ListNode *prev_slow=NULL;
+    ListNode *mid=NULL;
+    ListNode *second=NULL;
+    while(fast!=NULL && fast->next!=NULL)
+    {
+        fast=fast->next->next;
+        prev_slow=slow;
+        slow=slow->next;
     }
-    else half=len/2;
+    if(fast!=NULL)
+    {
+        mid=slow;
+        slow=slow->next;
+    }
+    second=slow;
+  //  second=reverse(second);
+    
+    
+     ListNode *cur=second;
+    ListNode *f=NULL;
     ListNode *prev=NULL;
-    for(int i=0;i<half;i++){
-     prev=mid;
-     mid=mid->next;
+    while(cur!=NULL)
+    {
+        f=cur->next;
+        cur->next=prev;
+        prev=cur;
+        cur=f;
     }
-    prev->next=NULL;
+    second=prev;
     
-    prev=NULL;
-    ListNode *curr=mid;
-    ListNode *next=NULL;
-    while(curr!=NULL){
-        next=curr->next;
-        curr->next=prev;
-        prev=curr;
-        curr=next;
-    }
     
-    ListNode* t1=A;
-    ListNode*t2=prev;
-    while(t1!=NULL&&t2!=NULL){
-        if(t1->val!=t2->val)
-         return 0;
-        t1=t1->next;
-        t2=t2->next;
+    while(second!=NULL && A!=NULL){
+        if(A->val==second->val)
+        {
+             A=A->next;
+        second=second->next;
+        }
+        else
+        {
+            return 0;
+        }
+       
     }
     return 1;
 }
