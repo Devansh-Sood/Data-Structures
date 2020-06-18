@@ -23,7 +23,7 @@ Output : Linked list should be changed to,
  struct node *change(struct node*head);
  struct node *h1;
  
-void main()
+int main()
 {
     struct node *head=NULL;
     int n,i;
@@ -31,6 +31,7 @@ void main()
     head=create(n);
     head=change(head);
     display(h1);
+    return 0;
 }
 
 struct node *create(int n)
