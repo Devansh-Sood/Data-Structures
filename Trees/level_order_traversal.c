@@ -29,7 +29,6 @@ int height(struct tnode *root)
     return (r+1);
 }
 
-/* Print nodes at a given level */
 void printGivenLevel(struct tnode* root, int level) 
 { 
     if (root == NULL) 
@@ -43,7 +42,6 @@ void printGivenLevel(struct tnode* root, int level)
     } 
 }
 
-/* Function to print level order traversal a tree*/
 void printLevelOrder(struct tnode* root) 
 { 
     int h = height(root); 
@@ -52,7 +50,6 @@ void printLevelOrder(struct tnode* root)
         printGivenLevel(root, i); 
 } 
 
-/* Driver program to test above functions*/
 int main() 
 { 
   
